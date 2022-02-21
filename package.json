@@ -1,0 +1,28 @@
+{
+  "name": "covid19-apis",
+  "version": "1.0.0",
+  "description": "The covid19 apis",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SomsakGitHub/nodeJS_somsak.k.git"
+  },
+  "keywords": [
+    "[\"covid\"",
+    "\"covid19\"",
+    "\"apis\"",
+    "\"J\"]"
+  ],
+  "author": "Somsak Kaeworasan (J)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SomsakGitHub/nodeJS_somsak.k/issues"
+  },
+  "homepage": "https://github.com/SomsakGitHub/nodeJS_somsak.k#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
