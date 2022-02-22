@@ -1,6 +1,7 @@
 const {vaccineList, getNextID} = require('./mockData/global');
 const express = require('express');
 const app = express();
+const config = require('./core/config');
 
 app.use(express.json());
 
@@ -44,10 +45,14 @@ app.get('/vaccines', (req, res) => {
 
     const vaccine  = vaccineList.find(f => f.id == id);
 
-    if (vaccine){
-        res.status(200).json(vaccine);
+    if (!id){
+        res.status(200).json(vaccineList);
     }else{
-        res.status(404).end();
+        if (vaccine){
+            res.status(200).json(vaccine);
+        }else{
+            res.status(404).end();
+        }
     }
     
 });
@@ -113,10 +118,38 @@ app.put('/vaccines', (req, res) => {
         vaccineList[index].name = name
         vaccineList[index].ef = ef
 
+        res.status(200).json({
+            vaccineList: vaccineList,
+            des: "Update data successfully."
+        });
+    }else{
+        res.status(404).json({
+            des: "No update data found."
+        });
+    }
+});
+
+app.delete('/vaccines', (req, res) => {
+
+    const id = req.query.id;
+    const index = vaccineList.findIndex(f => f.id == id);
+
+    if (index > 0){
+        vaccineList.splice(index, 1)
         res.status(200).json(vaccineList);
     }else{
-        res.status(404).end();
+        res.status(404).json({
+            des: "No delete data found."
+        });
     }
+});
+
+app.get('/getAppName', (req, res) => {
+
+    res.json({
+        appName: config.appName
+    })
+    
 });
 
 app.listen(3000);
