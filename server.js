@@ -145,10 +145,10 @@ app.delete('/vaccines', (req, res) => {
 });
 
 app.get('/getAppName', (req, res) => {
-
-    res.json({
+    const result = {
         appName: config.appName
-    })
+    }
+    res.json(result)
     
 });
 
