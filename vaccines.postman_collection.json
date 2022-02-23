@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d6858070-89ef-4e9a-8ad8-a0f8806572ea",
+		"_postman_id": "694c81d9-da6f-477a-9c54-9364eb4cc50c",
 		"name": "vaccines",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -20,9 +20,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{domainLocalhost}}vaccines",
+					"raw": "{{localhostDomain}}vaccines",
 					"host": [
-						"{{domainLocalhost}}vaccines"
+						"{{localhostDomain}}vaccines"
 					]
 				}
 			},
@@ -34,9 +34,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{domainLocalhost}}vaccines",
+					"raw": "{{localhostDomain}}vaccines?id=2",
 					"host": [
-						"{{domainLocalhost}}vaccines"
+						"{{localhostDomain}}vaccines"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						}
 					]
 				}
 			},
@@ -57,9 +63,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{domainLocalhost}}vaccines?id=3",
+					"raw": "{{localhostDomain}}vaccines?id=3",
 					"host": [
-						"{{domainLocalhost}}vaccines"
+						"{{localhostDomain}}vaccines"
 					],
 					"query": [
 						{
@@ -77,9 +83,9 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{domainLocalhost}}vaccines?id=2",
+					"raw": "{{localhostDomain}}vaccines?id=2",
 					"host": [
-						"{{domainLocalhost}}vaccines"
+						"{{localhostDomain}}vaccines"
 					],
 					"query": [
 						{
@@ -97,9 +103,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{domainLocalhost}}getAppName",
+					"raw": "{{localhostDomain}}getAppName",
 					"host": [
-						"{{domainLocalhost}}getAppName"
+						"{{localhostDomain}}getAppName"
 					]
 				}
 			},
