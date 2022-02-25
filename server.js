@@ -1,83 +1,87 @@
-const {vaccineList, getNextID} = require('./mockData/global');
+
 const express = require('express');
 const app = express();
 const config = require('./core/config');
 
 app.use(express.json());
 
-app.route('/vaccines')
-.get((req, res) => {
+const vaccinesRoute = require('./routes/vaccinesRoute')
 
-    const id = req.query.id
+app.use('/vaccines', vaccinesRoute);
 
-    const vaccine  = vaccineList.find(f => f.id == id);
+// app.route('/vaccines')
+// .get((req, res) => {
 
-    if (!id){
-        res.status(200).json(vaccineList);
-    }else{
-        if (vaccine){
-            res.status(200).json(vaccine);
-        }else{
-            res.status(404).end();
-        }
-    }
-})
-.post((req, res) => {
+//     const id = req.query.id
 
-    const {code, name, ef} = req.body;
-    const newID = getNextID();
+//     const vaccine  = vaccineList.find(f => f.id == id);
 
-    vaccineList.push({
-        id: newID,
-       code,
-       name,
-       ef
-    })
+//     if (!id){
+//         res.status(200).json(vaccineList);
+//     }else{
+//         if (vaccine){
+//             res.status(200).json(vaccine);
+//         }else{
+//             res.status(404).end();
+//         }
+//     }
+// })
+// .post((req, res) => {
 
-    res.redirect(`/vaccines?id=${newID}`)
+//     const {code, name, ef} = req.body;
+//     const newID = getNextID();
 
-    // res.json({
-    //    code,
-    //    name,
-    //    ef
-    // })
-})
-.put((req, res) => {
+//     vaccineList.push({
+//         id: newID,
+//        code,
+//        name,
+//        ef
+//     })
 
-    const id = req.query.id;
-    const {code, name, ef} = req.body;
+//     res.redirect(`/vaccines?id=${newID}`)
 
-    const index = vaccineList.findIndex(f => f.id == id);
+//     // res.json({
+//     //    code,
+//     //    name,
+//     //    ef
+//     // })
+// })
+// .put((req, res) => {
 
-    if (index > 0){
-        vaccineList[index].code = code
-        vaccineList[index].name = name
-        vaccineList[index].ef = ef
+//     const id = req.query.id;
+//     const {code, name, ef} = req.body;
 
-        res.status(200).json({
-            vaccineList: vaccineList,
-            des: "Update data successfully."
-        });
-    }else{
-        res.status(404).json({
-            des: "No update data found."
-        });
-    }
-})
-.delete((req, res) => {
+//     const index = vaccineList.findIndex(f => f.id == id);
 
-    const id = req.query.id;
-    const index = vaccineList.findIndex(f => f.id == id);
+//     if (index > 0){
+//         vaccineList[index].code = code
+//         vaccineList[index].name = name
+//         vaccineList[index].ef = ef
 
-    if (index > 0){
-        vaccineList.splice(index, 1)
-        res.status(200).json(vaccineList);
-    }else{
-        res.status(404).json({
-            des: "No delete data found."
-        });
-    }
-});
+//         res.status(200).json({
+//             vaccineList: vaccineList,
+//             des: "Update data successfully."
+//         });
+//     }else{
+//         res.status(404).json({
+//             des: "No update data found."
+//         });
+//     }
+// })
+// .delete((req, res) => {
+
+//     const id = req.query.id;
+//     const index = vaccineList.findIndex(f => f.id == id);
+
+//     if (index > 0){
+//         vaccineList.splice(index, 1)
+//         res.status(200).json(vaccineList);
+//     }else{
+//         res.status(404).json({
+//             des: "No delete data found."
+//         });
+//     }
+// });
 
 // app.get('/', function (req, res) {
 //   res.send('Hello World somsak')
@@ -225,4 +229,4 @@ app.get('/getAppName', (req, res) => {
     
 });
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
